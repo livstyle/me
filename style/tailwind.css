@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-image: url("https://livstyle.oss-cn-beijing.aliyuncs.com/home/b664dd237c7e9dc4d48eec0165b65e87.jpeg")
+}
