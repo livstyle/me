@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-leptos = { path = "../../leptos", features = ["csr"] }
-leptos_meta = { path = "../../meta" }
-leptos_router = { path = "../../router" }
+leptos = { version = "0.6.15", features = ["csr"] }
+leptos_meta = "0.6.15"
+leptos_router = "0.6.15"
 gloo-net = { version = "0.6.0", features = ["http"] }
 console_error_panic_hook = { version = "0.1.7" }
