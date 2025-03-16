@@ -1,28 +1,33 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="utf-8">
-    
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  
 <script type="module">
-import init, * as bindings from '/tailwind-csr-trunk-6e53bad27af672ac.js';
-init('/tailwind-csr-trunk-6e53bad27af672ac_bg.wasm');
+import init, * as bindings from '/tailwind-csr-trunk-f068fa71fc140fc0.js';
+const wasm = await init({ module_or_path: '/tailwind-csr-trunk-f068fa71fc140fc0_bg.wasm' });
+
+
 window.wasmBindings = bindings;
 
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
 </script>
-    <link rel="icon" href="/favicon-e9cbd8f50cc65bf2.ico" integrity="sha384-YobgLXwtz0GhXVUTHml49p32guapVFlEG8UpQdDVN3kekOqkQi-qSXEpwp-yM4BW">
-    <link rel="stylesheet" href="/tailwind-234f03f04dd8b25.css" integrity="sha384-UGEnWuduh3Y2fStq-sRBOA7II9TGyne16oWRAFXWji8oxHWEkmU97lFbyB4g5oxh">
-    <title>LivStyle</title>
-  
-<link rel="preload" href="/tailwind-csr-trunk-6e53bad27af672ac_bg.wasm" as="fetch" type="application/wasm" crossorigin="anonymous" integrity="sha384-oBgz5iFP4vgikysHybwtuNtV3bAdiAdu65YIGQQyiqngZUpbQyZIHLq934YS9QbV">
-<link rel="modulepreload" href="/tailwind-csr-trunk-6e53bad27af672ac.js" crossorigin="anonymous" integrity="sha384-BX7ffUfsIHlcnccMkKNT18wMRPI6SBrBCwHeHGi5RwAdo5NGHL_gOGlrVWm_6Nwd"></head>
+  <link rel="icon" href="/favicon-e9cbd8f50cc65bf2.ico" integrity="sha384-YobgLXwtz0GhXVUTHml49p32guapVFlEG8UpQdDVN3kekOqkQi+qSXEpwp+yM4BW"/>
+  <link rel="stylesheet" href="/tailwind-f0b67c95ec08f78f.css" integrity="sha384-05W0jFZSCMLgAn4JR5dnSnbWeAMCaEMCc6avIm+4vamIP12x66OzqmvkLxHvo/iw"/>
+  <link rel="stylesheet" href="/style/style.css"/>
+  <title>Livstyle AI</title>
+<link rel="modulepreload" href="/tailwind-csr-trunk-f068fa71fc140fc0.js" crossorigin="anonymous" integrity="sha384-NXqUu+rohewFw9s0PQ1tCiaJ+C4xMrjfvOhv2pr+pQiyCYQx2r+DUGdRAtREUFBj"><link rel="preload" href="/tailwind-csr-trunk-f068fa71fc140fc0_bg.wasm" crossorigin="anonymous" integrity="sha384-LVrRQmVofdgk5uDt87Pgnxmqh8eYgiydTm5jbOcWUb7GOJVutuvy0ei4oUj9MUcX" as="fetch" type="application/wasm"></head>
 
-  <body>
-
-  
-
+<body>
 <script>"use strict";
 
 (function () {
 
     const address = '{{__TRUNK_ADDRESS__}}';
+    const base = '{{__TRUNK_WS_BASE__}}';
     let protocol = '';
     protocol =
         protocol
@@ -30,7 +35,7 @@ window.wasmBindings = bindings;
             : window.location.protocol === 'https:'
                 ? 'wss'
                 : 'ws';
-    const url = protocol + '://' + address + '/_trunk/ws';
+    const url = protocol + '://' + address + base + '.well-known/trunk/ws';
 
     class Overlay {
         constructor() {
@@ -109,7 +114,7 @@ window.wasmBindings = bindings;
                         break;
                 }
             };
-            ws.onclose = this.onclose;
+            ws.onclose = () => this.onclose();
         }
 
         onclose() {
@@ -121,7 +126,7 @@ window.wasmBindings = bindings;
                     // rebuilt on restart)
                     const ws = new WebSocket(this.url);
                     ws.onopen = () => window.location.reload();
-                    ws.onclose = this.onclose;
+                    ws.onclose = () => this.onclose();
                 },
                 this.poll_interval);
         }
@@ -146,4 +151,11 @@ window.wasmBindings = bindings;
     new Client(url).start();
 
 })()
-</script></body></html>
+</script></body>
+
+</html>
+<!-- <style>
+  body {
+    background-image: url("https://livstyle.oss-cn-beijing.aliyuncs.com/home/b664dd237c7e9dc4d48eec0165b65e87.jpeg")
+  }
+</style> -->
